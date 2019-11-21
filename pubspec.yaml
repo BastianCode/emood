@@ -35,6 +35,21 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
 
+  fonts:
+    - family: AV
+      fonts:
+        - asset: fonts/AvenirNext-Regular-08.ttf
+        - asset: fonts/AvenirNext-DemiBold-03.ttf
+          weight: 600
+        - asset: fonts/AvenirNext-Medium-06.ttf
+          weight: 500
+        - asset: fonts/AvenirNext-Bold-01.ttf
+          weight: 700
+    
+  assets:
+    - assets/
+    - fonts/
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

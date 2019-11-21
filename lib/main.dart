@@ -6,7 +6,7 @@ void main(){
   runApp(new MaterialApp(
   home: Splash(),
   
-  theme: ThemeData(fontFamily: 'GT', primaryColor: Color(0xFF0091FF), unselectedWidgetColor: Color(0xFFDCDCDC), backgroundColor: Color(0xFFFFF8F8F8)),
+  theme: ThemeData(fontFamily: 'AV', primaryColor: Color(0xFF0091FF), unselectedWidgetColor: Color(0xFFDCDCDC), backgroundColor: Color(0xFFFFF8F8F8)),
   debugShowCheckedModeBanner: false
   ));
 
