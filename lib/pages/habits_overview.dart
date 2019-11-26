@@ -7,6 +7,7 @@ import 'package:emood/utils/sizeup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:vibrate/vibrate.dart';
 
 class HabitsOverview extends StatefulWidget {
   final FirebaseUser user;
@@ -61,9 +62,15 @@ class _HabitsOverviewState extends State<HabitsOverview> {
               padding: EdgeInsets.only(left: 35, right: 35, top: 110),
               child: Row(
                 children: <Widget>[
-                  SizeUp(
-                      delay: 1400,
-                      child: Image.asset("assets/plus.png", scale: 2)),
+                  GestureDetector(
+                    onTap: (){
+                      Vibrate.feedback(FeedbackType.heavy);
+                      
+                    },
+                    child: SizeUp(
+                        delay: 1400,
+                        child: Image.asset("assets/plus.png", scale: 2)),
+                  ),
                   Padding(
                     padding: EdgeInsets.only(left: 70),
                     child: ShowUp(
@@ -97,7 +104,7 @@ class _HabitsOverviewState extends State<HabitsOverview> {
                             }
                             switch (snapshot.connectionState) {
                               case ConnectionState.waiting:
-                                return CircularProgressIndicator();
+                                return Container();
                                 break;
                               default:
                                 return Container(

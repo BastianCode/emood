@@ -1,4 +1,5 @@
 import 'package:emood/utils/sign_in.dart';
+import 'package:emood/widgets/animated_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -28,12 +29,14 @@ class HabitItem extends StatefulWidget {
 
 class _HabitItemState extends State<HabitItem> {
 
-  double perc;
+  double perc = 0;
   Color col;
+  double perc_showed;
 
   @override
   void initState() {
     super.initState();
+    perc_showed = 0;
     perc = widget.this_week_done / widget.amount_per_week;
 
     if (perc < 0.30){
@@ -43,6 +46,12 @@ class _HabitItemState extends State<HabitItem> {
     }else{
       col = Color(0xFF4CD1B7);
     }
+
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      setState(() {
+        perc_showed = perc;
+      });
+    });
   }
 
   @override
@@ -129,14 +138,12 @@ class _HabitItemState extends State<HabitItem> {
               radius: 57,
               backgroundColor: Color(0xFFF0F0F0),
               lineWidth: 8.0,
+              animationDuration: 500,
               animation: true,
-              percent: perc,
+              animateFromLastPercent: true,
+              percent: perc_showed,
               progressColor: col, 
-              center: Opacity(opacity: 0.8,child: Text((perc*100).round().toString(), style: TextStyle(
-                color: col,
-                fontSize: 17,
-                fontWeight: FontWeight.bold
-              ),)),
+              center: Opacity(opacity: 0.8,child: AnimatedCount(count: (perc_showed*100).round(),col: col, duration: Duration(milliseconds: 500),)),
               circularStrokeCap: CircularStrokeCap.round,
             ),
           )
