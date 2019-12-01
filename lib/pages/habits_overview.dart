@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:emood/pages/recommeded_habits.dart';
 import 'package:emood/utils/habit_item.dart';
 import 'package:emood/utils/navbar.dart';
 import 'package:emood/utils/showup.dart';
@@ -7,6 +8,7 @@ import 'package:emood/utils/sizeup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:vibrate/vibrate.dart';
 
 class HabitsOverview extends StatefulWidget {
@@ -25,7 +27,7 @@ class _HabitsOverviewState extends State<HabitsOverview> {
   void initState() {
     super.initState();
     listVisible = false;
-    Future.delayed(const Duration(milliseconds: 600), () {
+    Future.delayed(const Duration(milliseconds: 800), () {
       setState(() {
         listVisible = true;
       });
@@ -59,20 +61,20 @@ class _HabitsOverviewState extends State<HabitsOverview> {
         Column(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 35, right: 35, top: 110),
+              padding: EdgeInsets.only(left: 20, right: 35, top: 110),
               child: Row(
                 children: <Widget>[
                   GestureDetector(
                     onTap: (){
-                      Vibrate.feedback(FeedbackType.heavy);
-                      
+                      Vibrate.feedback(FeedbackType.medium);
+                      Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: RecommendedHabit(user: widget.user,), duration: Duration(milliseconds: 300)));
                     },
                     child: SizeUp(
                         delay: 1400,
-                        child: Image.asset("assets/plus.png", scale: 2)),
+                        child: Container(width: 50, height: 50, child: Image.asset("assets/plus.png", scale: 2))),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 70),
+                    padding: EdgeInsets.only(left: 50),
                     child: ShowUp(
                       delay: 400,
                       child: Text(
@@ -121,11 +123,11 @@ class _HabitsOverviewState extends State<HabitsOverview> {
                                             .staggeredList(
                                           position: index,
                                           duration: const Duration(
-                                              milliseconds: 800),
+                                              milliseconds: 400),
                                           delay:
                                               const Duration(milliseconds: 100),
                                           child: SlideAnimation(
-                                            verticalOffset: 150.0,
+                                            verticalOffset: 100.0,
                                             child: FadeInAnimation(
                                               child: new HabitItem(
                                                 daily: ds['daily'],

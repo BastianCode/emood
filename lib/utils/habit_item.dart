@@ -47,7 +47,7 @@ class _HabitItemState extends State<HabitItem> {
       col = Color(0xFF4CD1B7);
     }
 
-    Future.delayed(const Duration(milliseconds: 1000), () {
+    Future.delayed(const Duration(milliseconds: 620), () {
       setState(() {
         perc_showed = perc;
       });

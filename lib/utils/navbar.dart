@@ -54,7 +54,7 @@ class Navbar extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: GestureDetector(
-                    onTap: () => _index == 0 ? null : Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: new HabitsOverview(user: user,), duration: Duration(milliseconds: 300))),
+                    onTap: () => _index == 0 ? null : Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: new HabitsOverview(user: user), duration: Duration(milliseconds: 300))),
                     child: Opacity(
                       opacity: _index == 1 ? 1 : 0.2,
                                           child: Image.asset(

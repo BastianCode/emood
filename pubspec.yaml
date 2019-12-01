@@ -27,6 +27,8 @@ dependencies:
   cloud_firestore:
   flutter_launcher_icons:
   percent_indicator:
+  sleek_circular_slider:
+  flutter_swiper:
   page_transition: '^1.1.0'
 
    
