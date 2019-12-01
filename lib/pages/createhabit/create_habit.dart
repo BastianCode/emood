@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:emood/pages/createhabit/uploadhabit.dart';
 import 'package:emood/pages/habits_overview.dart';
 import 'package:emood/pages/rec_amount.dart';
 import 'package:emood/pages/recommeded_habits.dart';
@@ -38,18 +39,7 @@ class _CreateHabitState extends State<CreateHabit> {
 
 
   Future createNewHabit() async{
-    await getUser().then((user) async {
-      userdata = user;
-      await Firestore.instance.collection('user').document(user.uid).collection('habits').add({
-        'amount_per_week': amountperweek,
-        'daily': amountperweek == 7 ? true : false,
-        'icon': icon,
-        'name': habitname,
-        'level': 'Wood',
-        'reps_done': 0,
-        'this_week': 0
-      });
-    });
+     Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: UploadHabit(icon: icon, name: habitname, amount: amountperweek,), duration: Duration(milliseconds: 300)));
   }
 
   @override
@@ -159,7 +149,6 @@ class _CreateHabitState extends State<CreateHabit> {
                   voidCallback: () { 
                       createNewHabit().then((_){
                           Vibrate.feedback(FeedbackType.success);
-                          Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: HabitsOverview(user: userdata,), duration: Duration(milliseconds: 300)));
                       });
                   }),
             ),
@@ -263,7 +252,6 @@ class _CreateHabitState extends State<CreateHabit> {
                 max: 7.0,
                 initialValue: 1,
                 onChange: (double value) {
-                  Vibrate.feedback(FeedbackType.light);
                   amountperweek = value.round();
                 },
                 onChangeEnd: (value) {
