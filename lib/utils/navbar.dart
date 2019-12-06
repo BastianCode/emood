@@ -1,4 +1,5 @@
 import 'package:emood/pages/habits_overview.dart';
+import 'package:emood/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -33,14 +34,14 @@ class Navbar extends StatelessWidget {
           padding: EdgeInsets.only(bottom: 25),
           child: Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Container(
                 //* HOME
                 width: 50,
                 height: 50,
                 child: GestureDetector(
-                    //onTap: () => _index == 0 ? null : Navigator.push(context, PageTransition(type: PageTransitionType.downToUp, child: new MyAssignments(), duration: Duration(milliseconds: 300))),
+                    onTap: () => _index == 0 ? null : Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: Home(user: user), duration: Duration(milliseconds: 300))),
                     child: Opacity(
                   opacity: _index == 0 ? 1 : 0.2,
                   child: Image.asset(
@@ -54,7 +55,7 @@ class Navbar extends StatelessWidget {
                 width: 50,
                 height: 50,
                 child: GestureDetector(
-                    onTap: () => _index == 0 ? null : Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: new HabitsOverview(user: user), duration: Duration(milliseconds: 300))),
+                    onTap: () => _index == 1 ? null : Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: new HabitsOverview(user: user), duration: Duration(milliseconds: 300))),
                     child: Opacity(
                       opacity: _index == 1 ? 1 : 0.2,
                                           child: Image.asset(

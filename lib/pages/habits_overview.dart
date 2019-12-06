@@ -138,6 +138,7 @@ class _HabitsOverviewState extends State<HabitsOverview> {
                                                 level: ds['level'],
                                                 reps_done: ds['reps_done'],
                                                 icon: ds['icon'],
+                                                id: ds.documentID,
                                               ),
                                             ),
                                           ),

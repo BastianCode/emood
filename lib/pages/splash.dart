@@ -1,4 +1,5 @@
 import 'package:emood/pages/habits_overview.dart';
+import 'package:emood/pages/home.dart';
 import 'package:emood/utils/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class _SplashState extends State<Splash> {
 
   Future goToHabits(FirebaseUser user) async{
     await Future.delayed(const Duration(milliseconds: 1500));
-    Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: HabitsOverview(user: user), duration: Duration(milliseconds: 300)));
+    Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: Home(user: user), duration: Duration(milliseconds: 300)));
   }
 
   Future goToLogin() async{
